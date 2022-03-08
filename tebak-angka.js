@@ -30,8 +30,34 @@ function getAnswer(){
 // inisialisasi key untuk session storage.
 const sessionAnswerKey = "SESSION_ANSWER";
 const sessionUserAttempsKey = "SESSION_USER_ATTEMPS";
-const sessionUserIsPlaying = "SESSION_USER_IS_PLAYING";
+const sessionUserIsPlayingKey = "SESSION_USER_IS_PLAYING";
 
 // inisialisasi key untuk local storage.
 const localTotalVictoryKey = "LOCAL_TOTAL_VICTORY_PLAYED";
 const localMaximumAttempsKey = "LOCAL_MAXIMUM_ATTEMPTS";
+
+
+// Event listener load pada object window.
+window.addEventListener("load", function(){
+    if(typeof(Storage) !== "undefined"){
+        // inisialisasi semua item web storage yang kita akan gunakan jika belum ada.
+        if(sessionStorage.getItem(sessionAnswerKey) === null){
+            sessionStorage.setItem(sessionAnswerKey, ""); 
+        }if(sessionStorage.getItem(sessionUserAttempsKey) === null){
+            sessionStorage.setItem(sessionUserAttempsKey, 0);
+        }if(sessionStorage.getItem(sessionUserIsPlayingKey) === null){
+            sessionStorage.setItem(sessionUserIsPlayingKey, false);
+        }if(localStorage.getItem(localTotalVictoryKey) === null){
+            localStorage.setItem(localTotalVictoryKey, 0);
+        }if(localStorage.getItem(localMaximumAttempsKey) === null){
+            localStorage.setItem(localMaximumAttempsKey, 0);
+        }
+    }else{
+        alert("Browser yang Anda gunakan belum mendukung fitur Web Storage. Harus Tetap Semangat !!!");
+    }
+
+    // inisialisasi semua nilai field pada dokumen yang menggunakan nilai dari web storage.
+    sessionUserAttempsField.innerText = sessionStorage.getItem(sessionUserAttempsKey);
+    localTotalVictoryField.innerText = localStorage.getItem(localTotalVictoryKey);
+    localMaximumAttempField.innerText = localStorage.getItem(localMaximumAttempsKey);
+});
