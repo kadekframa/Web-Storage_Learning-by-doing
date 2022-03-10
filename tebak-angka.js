@@ -63,6 +63,7 @@ window.addEventListener("load", function(){
 });
 
 
+// memodifikasi item storage.
 playButton.addEventListener("click", function(){
     sessionStorage.setItem(sessionAnswerKey, getAnswer());
     sessionStorage.setItem(sessionUserIsPlayingKey, true);
@@ -131,6 +132,7 @@ window.addEventListener("beforeunload", function(){
 
 
 
+// menghapus item storage.
 destroyDataButton.addEventListener("click", function(){
     sessionStorage.removeItem(sessionAnswerKey);
     sessionStorage.removeItem(sessionUserAttempsKey);
